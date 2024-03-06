@@ -10,11 +10,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
-import AceEditor from "react-ace";
-
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/theme-github";
-import "ace-builds/src-noconflict/ext-language_tools";
+import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import Navbar from "../components/Navbar";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -24,78 +20,44 @@ const ProblemDetails = ({ problemData }) => {
     <Paper sx={{ p: 2, m: 0 }}>
       <Typography variant="h5">{problemData.question_title}</Typography>
       <Typography variant="body1">{problemData.description}</Typography>
-      <Typography variant="body2">
-        Topics: {problemData.topics.join(",")}
-      </Typography>
+      <Typography variant="body2">Topics: {problemData.topics}</Typography>
       {/* <Typography variant="body2">
         Categories: {problemData.categories.join(", ")}
       </Typography> */}
       {problemData.example_case && (
         <div>
           <Typography variant="subtitle1">Example Case:</Typography>
-          <Typography variant="body2">
+          {/* <Typography variant="code">
             Input: {problemData.example_case[0].sample_input}
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="code">
             Output: {problemData.example_case[0].sample_output}
-          </Typography>
+          </Typography> */}
+          <code>{problemData.example_case[0].sample_input}</code>
+          <code>{problemData.example_case[0].sample_output}</code>
         </div>
       )}
     </Paper>
   );
 };
 
-const CodeEditor = ({ code, handleCodeChange }) => {
-  const editorRef = React.createRef();
-
-  useEffect(() => {
-    // const editor = AceEditor.edit(editorRef.current);
-    // editor.setTheme("ace/theme/github");
-    // editor.session.setMode("ace/mode/javascript"); // Change based on language
-    // editor.setValue(code, -1); // Set initial code value
-    // editor.setOptions({
-    //   fontSize: 14,
-    //   // Add other editor options as needed
-    // });
-  }, [code]);
-
-  return (
-    <div>
-      {/* <AceEditor ref={editorRef} onChange={handleCodeChange} /> */}
-      <AceEditor
-        mode="java"
-        theme="github"
-        onChange={handleCodeChange}
-        name="UNIQUE_ID_OF_DIV"
-        editorProps={{ $blockScrolling: true }}
-      />
-    </div>
-  );
-};
-
-const CompileButton = ({ handleCompile }) => {
-  return (
-    <Button variant="contained" onClick={handleCompile}>
-      Run
-    </Button>
-  );
-};
-
-const SnackbarAlert = ({ open, message, onClose }) => {
-  return (
-    <Snackbar open={open} autoHideDuration={6000} onClose={onClose}>
-      <Alert severity={message.includes("successful") ? "success" : "error"}>
-        {message}
-      </Alert>
-    </Snackbar>
-  );
-};
+// const SnackbarAlert = ({ open, message, onClose }) => {
+//   return (
+//     <Snackbar open={open} autoHideDuration={6000} onClose={onClose}>
+//       <Alert severity={message.includes("successful") ? "success" : "error"}>
+//         {message}
+//       </Alert>
+//     </Snackbar>
+//   );
+// };
 
 const ProblemPlayground = () => {
   const { problemID } = useParams();
 
   const navigate = useNavigate();
   const [problems, setProblems] = useState({});
+
+  const [currentcode, setCurrentcode] = useState("");
 
   // Check if user is not logged in on page load
   useEffect(() => {
@@ -126,10 +88,19 @@ const ProblemPlayground = () => {
     fetchProblem();
   }, []);
 
+  const handleEditorChange = (value, event) => {
+    setCurrentcode(value);
+    console.log("here is the current model value:", value);
+  };
+
+  const handleCompile = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <Navbar />
-      {/* {JSON.stringify(problems)} */}
+      {JSON.stringify(currentcode)}
       <Container maxWidth="lg" sx={{ p: 0, m: 0 }}>
         {" "}
         {/* Remove padding and margins from Container */}
@@ -143,15 +114,14 @@ const ProblemPlayground = () => {
             {" "}
             {/* Remove padding and margins from Grid items */}
             <Paper sx={{ p: 2, m: 0 }}>
-              <CodeEditor
-                code=""
-                handleCodeChange={(code) => {
-                  console.log(code);
-                }}
+              <Editor
+                height="90vh"
+                defaultLanguage="java"
+                defaultValue={currentcode}
+                onChange={handleEditorChange}
               />
-              <CompileButton handleCompile={() => {}} />
             </Paper>
-            <SnackbarAlert open={false} message="" onClose={() => {}} />
+            <Button onClick={(e) => handleCompile}>Run</Button>
           </Grid>
         </Grid>
       </Container>
