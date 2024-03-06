@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard"; // Replace with your Dashboard compon
 import Home from "./pages/Home"; // Replace with your Home component path (optional)
 import Playground from "./pages/Playground";
 import ProblemPlayground from "./pages/ProblemPlayground";
+import ChatUI from "./pages/ChatUI";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/playground" element={<Playground />} />
         <Route path="/problem/:problemID" element={<ProblemPlayground />} />
+        <Route path="/chat" element={<ChatUI />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
