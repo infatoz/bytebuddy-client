@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { TextField, Button, Alert, Container, Grid } from "@mui/material";
+import { TextField, Button, Alert, Container, Grid, Typography } from "@mui/material";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -69,11 +69,15 @@ const Login = () => {
           minHeight: "100vh",
         }}
       >
+       
         <Grid container spacing={2}>
           <Grid item xs={12}>
             {alertMessage && (
               <Alert severity={alertSeverity}>{alertMessage}</Alert>
             )}
+             <Typography component="h1" variant="h5" style={{textAlign:"center",marginBottom:"30px"}}>
+              Login
+            </Typography>
             <form onSubmit={handleSubmit}>
               <TextField
                 label="Email"
