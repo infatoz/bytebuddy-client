@@ -34,6 +34,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 // import ChatUI from "./ChatUI";
 import { useRef } from "react";
 import Markdown from "react-markdown";
+import { Splitter, SplitterPanel } from "primereact/splitter";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -254,19 +255,12 @@ const ProblemPlayground = () => {
   );
   return (
     <>
-      {/* {JSON.stringify(currentcode)} */}
-      <Container maxWidth="lg" sx={{ marginTop: 1 }}>
-        {" "}
-        {/* Remove padding and margins from Container */}
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={5} sx={{ p: 0, m: 0 }}>
-            {" "}
-            {/* Remove padding and margins from Grid items */}
-            <ProblemDetails problemData={problems} />
-          </Grid>
-          <Grid item xs={12} md={7} sx={{ p: 0, m: 0 }}>
-            {" "}
-            {/* Remove padding and margins from Grid items */}
+      <Splitter className="w-full bg-black" 
+      style={{ height: "70vh" }}>
+        <SplitterPanel size={35}>
+              <ProblemDetails problemData={problems} />
+        </SplitterPanel>
+        <SplitterPanel size={65}>
             <Paper sx={{ p: 2, m: 0 }}>
               <Editor
                 theme={"vs-dark"}
@@ -277,13 +271,13 @@ const ProblemPlayground = () => {
                 options={{}}
               />
             </Paper>
-          </Grid>
-        </Grid>
-      </Container>
-      <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
-        <ChatBubbleIcon />
-      </Fab>
-      {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
+        </SplitterPanel>
+      </Splitter> 
+      <div className="buddyIcon">
+        <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
+          <ChatBubbleIcon />
+        </Fab>
+      </div> 
       <Drawer
         open={open}
         onClose={toggleDrawer(false)}
