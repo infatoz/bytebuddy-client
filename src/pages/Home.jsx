@@ -29,11 +29,11 @@ function Home() {
         </section>
         </div>
         <div className='banner'>
-          <Container maxWidth="lg">
+          <Container id="how-it-works" maxWidth="lg">
             <img src="banner1.png" alt="banner" />
           </Container>
         </div>
-        <div className="support">
+        <div id="features" className="support">
         <section className="dark:bg-gray-100 dark:text-gray-800">
           <div className="container max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
             <div>

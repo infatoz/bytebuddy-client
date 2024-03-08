@@ -40,6 +40,17 @@
 
 
 /* Dashboard */
-.welcome-greet{
-    /* box-shadow: inset 0px -50px 30px -14px #F3F4F6; */
+
+
+/* playground */
+
+.play-page{
+    height: 70vh;
+    overflow: auto;
+}
+
+.buddyIcon{
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
 }
