@@ -1,14 +1,17 @@
-# React + Vite
+Github Instructions : 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
-Problem statement
-Flowchart
-Innovation
-USP
+```
+git checkout -b "new_branch_name"
+git add .
+git commit -m "comment"
+git checkout main
+git pull origin main
+git checkout "new_branch_name"
+git rebase main
+git push origin "new_branch_name"
+```
+Go to github repo in chrome and merge the branch
+```
+git checkout main
+git pull origin main
+```
