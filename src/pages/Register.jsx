@@ -63,7 +63,7 @@ const Register = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <div className="dark:bg-gray-100">
       <Container
         component="main"
         maxWidth="xs"
@@ -71,7 +71,7 @@ const Register = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mt: 8,
+          py: 8,
         }}
       >
         <Typography component="h1" variant="h5">
@@ -92,6 +92,7 @@ const Register = () => {
                 fullWidth
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                className="dark:bg-white"
                 required
               />
               <TextField
@@ -102,6 +103,7 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
+                className="dark:bg-white"
                 required
               />
               <TextField
@@ -112,6 +114,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
+                className="dark:bg-white"
                 required
               />
               <TextField
@@ -122,6 +125,7 @@ const Register = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 type="password"
+                className="dark:bg-white"
                 required
               />
               <Button type="submit" variant="contained" color="primary" fullWidth mt={2}>
@@ -136,7 +140,7 @@ const Register = () => {
           </Grid>
         </Grid>
       </Container>
-    </ThemeProvider>
+    </div>
   );
 };
 

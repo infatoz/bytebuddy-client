@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="dark:bg-gray-100">
       <Container
         component="main"
         maxWidth="xs"
@@ -66,7 +66,7 @@ const Login = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
+          minHeight: "80vh",
         }}
       >
        
@@ -87,6 +87,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
+                className="dark:bg-white"
                 required
               />
               <TextField
@@ -97,6 +98,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
+                className="dark:bg-white"
                 required
               />
               <Button

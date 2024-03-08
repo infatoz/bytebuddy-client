@@ -25,15 +25,6 @@ const ListProblems = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  // Check if user is not logged in on page load
-  useEffect(() => {
-    const storedToken = localStorage.getItem("userToken");
-    const storedUserData = localStorage.getItem("userData");
-    if (!storedToken && !storedUserData) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
   useEffect(() => {
     const fetchProblems = async () => {
       const token = localStorage.getItem("userToken");

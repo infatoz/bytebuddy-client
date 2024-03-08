@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 
 function Playground() {
   return (
     <div>
-      <Navbar />
+      This is playground
     </div>
   );
 }

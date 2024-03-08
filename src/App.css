@@ -1,0 +1,45 @@
+/* navbar */
+.nav-tab{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    gap: 15px;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 600;
+}
+.nav-tab-1 img{
+    height: 60px;
+    width: 60px;
+    border: 1px solid purple;
+    border-radius: 50%;
+}
+.logo-title{
+    font-size: 18px;
+    font-weight: 900;
+}
+.nav-tab-2 ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.nav-tab-2 ul li{
+    padding: 20px;
+}
+.nav-tab-3 Button{
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #7F56D9;
+    color:white;
+}
+.nav-tab-3 Button svg{
+    font-size: 10px;
+}
+
+
+/* Dashboard */
+.welcome-greet{
+    /* box-shadow: inset 0px -50px 30px -14px #F3F4F6; */
+}
