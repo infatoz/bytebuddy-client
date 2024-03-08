@@ -254,7 +254,6 @@ const ProblemPlayground = () => {
   );
   return (
     <>
-      <Navbar />
       {/* {JSON.stringify(currentcode)} */}
       <Container maxWidth="lg" sx={{ marginTop: 1 }}>
         {" "}

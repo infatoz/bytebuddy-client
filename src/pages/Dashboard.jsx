@@ -1,15 +1,30 @@
-import React from "react";
-import Navbar from "../components/Navbar";
+import React, { useEffect } from "react";
 import ListProblems from "./ListProblems";
 import ListCategories from "./ListCategories";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate()
+  // Check if user is not logged in on page load
+  useEffect(() => {
+    const storedToken = localStorage.getItem("userToken");
+    const storedUserData = localStorage.getItem("userData");
+    if (!storedToken && !storedUserData) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
-    <>
-      <Navbar />
+    <div className="dark:bg-gray-100">
+      <section className="dark:bg-gray-800 dark:text-gray-100 welcome-greet">
+        <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+          <h1 className="text-2xl font-bold leadi sm:text-2xl">Welcome back
+            <span className="dark:text-violet-400"> Anishkrishna!&#128075;</span> 
+          </h1>
+        </div>
+      </section>
       <ListProblems />
       <ListCategories />
-    </>
+    </div>
   );
 }
 
