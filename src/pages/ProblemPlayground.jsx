@@ -255,13 +255,12 @@ const ProblemPlayground = () => {
   );
   return (
     <>
-      <Splitter className="w-full bg-black" 
+      <Splitter className=" bg-black" 
       style={{ height: "70vh" }}>
-        <SplitterPanel size={35}>
+        <SplitterPanel size={30}>
               <ProblemDetails problemData={problems} />
         </SplitterPanel>
-        <SplitterPanel size={65}>
-            <Paper sx={{ p: 2, m: 0 }}>
+        <SplitterPanel minSize={40} size={70}>
               <Editor
                 theme={"vs-dark"}
                 height="70vh"
@@ -270,9 +269,9 @@ const ProblemPlayground = () => {
                 onChange={handleEditorChange}
                 options={{}}
               />
-            </Paper>
         </SplitterPanel>
       </Splitter> 
+
       <div className="buddyIcon">
         <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
           <ChatBubbleIcon />

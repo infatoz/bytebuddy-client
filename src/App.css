@@ -1,4 +1,5 @@
 /* navbar */
+
 .nav-tab{
     display: flex;
     flex-direction: row;
@@ -43,12 +44,6 @@
 
 
 /* playground */
-
-.play-page{
-    height: 70vh;
-    overflow: auto;
-}
-
 .buddyIcon{
     position: absolute;
     bottom: 40px;
