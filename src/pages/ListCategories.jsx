@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
-import { CardActionArea } from '@mui/material';
-import Grid from '@mui/material/Grid';
 
 function ListCategories() {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -38,30 +33,24 @@ function ListCategories() {
         SetCategories(uniqueCategories);
       }, [problems]);
 
+      const codeCategories = [
+        'Array','String','Linked List','Tree','Depth-First Search','Breadth-First Search','Dynamic Programming','Math'];
+        
+
   return (
     <>
-    <div className='p-32'>
-        <div className='m-8'>
-            <Typography gutterBottom variant="h4" component="div">
-                Explore Categories
-            </Typography>
+      <div className="container mx-auto mt-8">
+        <h1 className="text-4xl font-bold mb-8 text-center text-purple-700">Explore Code Categories</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {codeCategories.map((category, index) => (
+            <div key={index} className="bg-white p-6 rounded-md shadow-md">
+              <h3 className="text-xl font-semibold text-purple-700 mb-4">{category}</h3>
+              <p className="text-gray-600 mb-2">Total Questions: 20</p>
+              {/* Add additional content as needed */}
+            </div>
+          ))}
         </div>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {categories.map((category, index) => (
-                <Grid item xs={2} sm={4} md={4} key={index}>
-                    <Card sx={{ width: '100%' }}>
-                        <CardActionArea>
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {category}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-            ))}
-        </Grid>
-    </div>
+      </div>
     </>
   )
 }

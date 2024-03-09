@@ -12,10 +12,13 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Playground = () => {
   const initialCode = `import java.util.Scanner;\r\n\r\npublic class AdditionExample {\r\n public static void main(String[] args) {\r\n Scanner sc = new Scanner(System.in);\r\n \r\n // Do your code here\r\n\r\n System.out.println(sum);\r\n }\r\n}`;
-
+  const exampleCompileData = {
+    stderr: "error: Run your code to see output...",
+    exitCode: 1,
+  };
   const [currentCode, setCurrentCode] = useState(initialCode);
   const [codeLang, setCodeLang] = useState("java");
-  const [compileData, setCompileData] = useState({});
+  const [compileData, setCompileData] = useState(exampleCompileData);
   const [value, setValue] = useState(options[0]);
   const [inputValue, setInputValue] = useState("");
   const [editorWidth, setEditorWidth] = useState('100%');

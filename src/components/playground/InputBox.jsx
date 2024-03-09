@@ -10,7 +10,7 @@ function InputBox({ compileData,alignment }) {
     <>
       <Splitter layout={alignment} style={{ width: "100%", height: "90%" }}>
         <SplitterPanel size={50} minSize={30}>
-          <div className="bg-gray-100 text-black w-full h-full p-2 flex flex-col">
+          <div className="bg-gray-100 text-black rounded-md w-full h-full p-2 flex flex-col">
             <b>INPUT :</b>
             <div
               id="input-area"
@@ -25,7 +25,7 @@ function InputBox({ compileData,alignment }) {
           </div>
         </SplitterPanel>
         <SplitterPanel
-          className="bg-gray-100 text-black w-full h-full p-2 flex flex-col"
+          className="bg-gray-100 text-black rounded-md w-full h-full p-2 flex flex-col"
           size={50}
           minSize={30}
         >

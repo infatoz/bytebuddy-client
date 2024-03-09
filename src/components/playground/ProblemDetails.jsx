@@ -2,10 +2,10 @@ import React from "react";
 
 function ProblemDetails({ problemData }) {
   return (
-    <div className="max-w-screen-md mx-auto p-6 border rounded shadow bg-white overflow-hidden">
+    <div className="max-w-screen-md mx-auto p-6 border rounded shadow bg-white overflow-hidden h-full">
       <h2 className="text-3xl font-bold mb-4 text-blue-600">{problemData.question_title}</h2>
       <div className="text-lg mb-4 overflow-y-auto max-h-64">{problemData.description}</div>
-      <div className="italic text-gray-600 mb-4">{problemData.topics}</div>
+      <div className="text-gray-600 mb-4"><span className="text-red-900">Topic : </span>{problemData.topics}</div>
       {problemData.example_case && (
         <div className="mt-6">
           <h3 className="text-xl font-bold mb-2 text-green-600">Example Case:</h3>

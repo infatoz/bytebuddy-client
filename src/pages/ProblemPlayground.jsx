@@ -1,7 +1,28 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import logo from '../assets/logo.png'
 import Draggable from "react-draggable";
-import { Autocomplete,Typography,Paper,Button,AppBar,Toolbar,AlertTitle,Box,Collapse,IconButton,ButtonGroup,Fab,List,ListItem,ListItemText,Drawer,TextField,ListItemAvatar,Avatar,} from "@mui/material";
+import {
+  Autocomplete,
+  Typography,
+  Paper,
+  Button,
+  AppBar,
+  Toolbar,
+  AlertTitle,
+  Box,
+  Collapse,
+  IconButton,
+  ButtonGroup,
+  Fab,
+  List,
+  ListItem,
+  ListItemText,
+  Drawer,
+  TextField,
+  ListItemAvatar,
+  Avatar,
+} from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,7 +36,6 @@ import Chatbot from "../components/bot/Bot";
 import ProblemDetails from "../components/playground/ProblemDetails";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 
 // const SnackbarAlert = ({ open, message, onClose }) => {
 //   return (
@@ -35,7 +55,7 @@ const ProblemPlayground = () => {
     "import java.util.Scanner;\r\n\r\npublic class AdditionExample {\r\n public static void main(String[] args) {\r\n Scanner sc = new Scanner(System.in);\r\n \r\n // Do your code here\r\n\r\n System.out.println(sum);\r\n }\r\n}";
   const exampleCompileData = {
     stderr: "error: Run your code to see output...",
-    exitCode: 1
+    exitCode: 1,
   };
   const [currentcode, setCurrentcode] = useState(initialCode);
   const [codeLang, setCodeLang] = useState("java");
@@ -213,70 +233,74 @@ const ProblemPlayground = () => {
     setShowbot(!showbot);
   };
 
- 
-
   return (
     <>
-      <div className="parent">
-        <Splitter style={{ height: "85vh" }}>
+      <div className="parent" style={{height:"88vh"}}>
+        <Splitter style={{ height: "100%" }}>
           <SplitterPanel size={30}>
-            <ProblemDetails problemData={problems} />
-            <div className="w-full flex justify-center items-center gap-4 p-2">
-                <Autocomplete
-                  value={value}
-                  onChange={(_, newValue) => setValue(newValue)}
-                  inputValue={inputValue}
-                  onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
-                  id="controllable-states-demo"
-                  options={options}
-                  sx={{ width: 250 }}
-                  disableClearable
-                  renderInput={(params) => (
-                    <TextField {...params} label="Language"/>
-                  )}
-                />
-                <Button
-                  type="button"
-                  variant="contained"
-                  color="primary"
-                  onClick={handleCompile}
-                  className="h-14 w-1/2"
-                >
-                  Run
-                </Button>
-                <Button
-                  type="button"
-                  variant="contained"
-                  color="primary"
-                  // onClick={handleCompile}
-                  className="h-14 w-1/2"
-                >
-                  Submit
-                </Button>
-              </div>
+            <Splitter className="" style={{ height: "100%" }} layout="vertical">
+              <SplitterPanel size={90} minSize={90}>
+                <ProblemDetails problemData={problems} />
+              </SplitterPanel>
+              <SplitterPanel size={10} minSize={10}>
+                <div className="w-full flex justify-center items-center gap-4 p-2">
+                  <Autocomplete
+                    value={value}
+                    onChange={(_, newValue) => setValue(newValue)}
+                    inputValue={inputValue}
+                    onInputChange={(_, newInputValue) =>
+                      setInputValue(newInputValue)
+                    }
+                    id="controllable-states-demo"
+                    options={options}
+                    sx={{ width: 250 }}
+                    disableClearable
+                    renderInput={(params) => (
+                      <TextField {...params} label="Language" />
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    variant="contained"
+                    color="primary"
+                    onClick={handleCompile}
+                    className="h-14 w-1/2"
+                  >
+                    Run
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="contained"
+                    color="primary"
+                    // onClick={handleCompile}
+                    className="h-14 w-1/2"
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </SplitterPanel>
+            </Splitter>
           </SplitterPanel>
-          <SplitterPanel minSize={40} size={70}>
+          <SplitterPanel minSize={50} size={70}>
             <Splitter className="" style={{ width: "100%" }} layout="vertical">
-              <SplitterPanel size={70}>
+              <SplitterPanel size={60} minSize={50}>
                 <Editor
                   theme={"vs-dark"}
-                  height="70vh"
+                  height="100%"
                   defaultLanguage="java"
                   defaultValue={currentcode}
                   onChange={handleEditorChange}
                   options={{}}
                 />
               </SplitterPanel>
-              <SplitterPanel size={30}>
+              <SplitterPanel size={40} minSize={10}>
                 <InputBox compileData={compileData} alignment="horizontal" />
               </SplitterPanel>
             </Splitter>
           </SplitterPanel>
         </Splitter>
-        <div className="buddyIcon">
-          <Fab color="primary" aria-label="add" onClick={toggleChatbot}>
-            <ChatBubbleIcon />
-          </Fab>
+        <div className="buddyIcon" onClick={toggleChatbot}>
+          <img src={logo} alt="bot" height={"70px"} width={"70px"} />
         </div>
         <div
           className="showBotToggle"
