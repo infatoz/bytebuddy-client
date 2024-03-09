@@ -5,7 +5,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function Layout() {
   const location = useLocation();
-  const isPlaygroundPage = location.pathname === '/playground';
+  const isPlaygroundPage = location.pathname === '/playground' || '/practiceGround';
 
   return (
     <>
