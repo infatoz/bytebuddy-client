@@ -1,41 +1,10 @@
 import React from 'react'
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container'
-import logo from '../assets/logo.png'
-import banner1 from '../assets/banner1.png'
 import sm_banner_1 from '../assets/sm_banner_1.png'
 
-function Home() {
+function Features() {
   return (
     <>
-     <Stack spacing={12}>
-        <div className='hero-section'>
-        <section className="dark:bg-gray-100 dark:text-gray-800">
-          <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-            <div className="flex flex-col justify-center p-6 mx-20 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-              <h1 className="text-5xl font-bold leadi sm:text-6xl">Empower Your Coding Journey with 
-                <span className="dark:text-violet-800"> ByteBuddy</span>
-              </h1>
-              <p className="mt-6 mb-8 text-lg sm:mb-12">
-                <br  className="hidden md:inline lg:hidden" />
-              </p>
-              <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-800 dark:text-gray-100">Start Coding Now</a>
-                <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800">Go to Playground</a>
-              </div>
-            </div>
-            <div className="flex items-center justify-center p-32 mt-8 lg:mt-0 h-90 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-              <img src={logo} alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
-            </div>
-          </div>
-        </section>
-        </div>
-        <div className='banner'>
-          <Container id="how-it-works" maxWidth="lg">
-            <img src={banner1} alt="banner" />
-          </Container>
-        </div>
-        <div id="features" className="support">
+      <div id="features" className="support">
         <section className="dark:bg-gray-100 dark:text-gray-800">
           <div className="container max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
             <div>
@@ -135,9 +104,8 @@ function Home() {
           </div>
         </section>            
         </div>
-      </Stack> 
     </>
   )
 }
 
-export default Home
+export default Features
