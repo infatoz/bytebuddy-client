@@ -69,10 +69,10 @@ function Navbar() {
                 <NavLink to="/dashboard">Dashboard</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard">Problems</NavLink>
+                <NavLink to="/allproblems">Problems</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard">Solved problems</NavLink>
+                <NavLink to="/solvedproblems">Solved problems</NavLink>
               </li>
             </ul>
           </div>

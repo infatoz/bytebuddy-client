@@ -13,8 +13,9 @@ function Dashboard() {
       navigate("/login");
     }
   }, [navigate]);
+
   return (
-    <div className="dark:bg-gray-100">
+    <div className="dark:bg-gray-800">
       <section className="dark:bg-gray-800 dark:text-gray-100 welcome-greet">
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
           <h1 className="text-2xl font-bold leadi sm:text-2xl">Welcome back
@@ -22,8 +23,16 @@ function Dashboard() {
           </h1>
         </div>
       </section>
-      <ListProblems />
-      <ListCategories />
+      <div className="dark:bg-gray-100" style={{borderRadius:'50px 50px 0 0'}}>
+        <div className="container-custom py-16 ">
+          <div className="py-8">
+            <ListProblems />
+          </div>
+          <div className="py-8">
+            <ListCategories />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,10 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function Layout() {
   const location = useLocation();
-  const isPlaygroundPage = location.pathname === '/playground' || '/practiceGround';
+  let isPlaygroundPage = false
+  if(location.pathname === '/playground' || location.pathname.startsWith('/problem/')){
+   isPlaygroundPage = true;
+  }
 
   return (
     <>

@@ -4,6 +4,7 @@ import Container from '@mui/material/Container'
 import logo from '../assets/logo.png'
 import banner1 from '../assets/banner1.png'
 import sm_banner_1 from '../assets/sm_banner_1.png'
+import { NavLink } from 'react-router-dom';
 
 function Home() {
   return (
@@ -20,8 +21,12 @@ function Home() {
                 <br  className="hidden md:inline lg:hidden" />
               </p>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-800 dark:text-gray-100">Start Coding Now</a>
-                <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800">Go to Playground</a>
+                <NavLink to="/login" className={"px-8 py-3 text-lg font-semibold rounded dark:bg-violet-800 dark:text-gray-100"}>
+                  Start Coding Now
+                </NavLink>
+                <NavLink to="/playground" className={"px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800"}>
+                  Go to Playground
+                </NavLink>
               </div>
             </div>
             <div className="flex items-center justify-center p-32 mt-8 lg:mt-0 h-90 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">

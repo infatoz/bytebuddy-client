@@ -3,16 +3,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './Layout.jsx'
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
-import Login from "./pages/Login"; // Replace with your Login component path
-import Dashboard from "./pages/Dashboard"; // Replace with your Dashboard component path
-import Home from "./pages/Home"; // Replace with your Home component path (optional)
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 import Playground from "./pages/Playground";
 import ProblemPlayground from "./pages/ProblemPlayground";
 import ChatUI from "./pages/ChatUI";
 import "./App.css";
 import Features from "./pages/Features";
 import How_it_works from "./pages/How_it_works"
-import Profile from './pages/Profile.jsx'
+import Profile from './pages/Profile'
+import Problems from "./pages/Problems";
+import SolvedProblems from './pages/SolvedProblems'
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/playground" element={<Playground />} />
           <Route path="/problem/:problemID" element={<ProblemPlayground />} />
+          <Route path="/allproblems" element={<Problems />} />
+          <Route path="/solvedproblems" element={<SolvedProblems />} />
           <Route path="/chat" element={<ChatUI />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
