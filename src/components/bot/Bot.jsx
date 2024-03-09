@@ -6,7 +6,7 @@ import Input from "./botComponents/Input";
 import API from "./ChatbotAPI";
 import Header from "./botComponents/Header";
 
-export default function Chatbot() {
+export default function Chatbot({ doChat }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Chatbot() {
       setMessages([
         <BotMessage
           key="0"
-          fetchMessage={async () => await API.GetChatbotResponse("hi")}
+          fetchMessage={async () => await doChat("Hello!")}
         />,
       ]);
     }
@@ -26,7 +26,7 @@ export default function Chatbot() {
       <UserMessage key={messages.length + 1} text={text} />,
       <BotMessage
         key={messages.length + 2}
-        fetchMessage={async () => await API.GetChatbotResponse(text)}
+        fetchMessage={async () => await doChat(text)}
       />
     );
     setMessages(newMessages);

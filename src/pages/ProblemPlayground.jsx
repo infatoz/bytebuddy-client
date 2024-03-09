@@ -1,35 +1,10 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 import Draggable from "react-draggable";
-import {
-  Autocomplete,
-  Typography,
-  Paper,
-  Button,
-  AppBar,
-  Toolbar,
-  AlertTitle,
-  Box,
-  Collapse,
-  IconButton,
-  ButtonGroup,
-  Fab,
-  List,
-  ListItem,
-  ListItemText,
-  Drawer,
-  TextField,
-  ListItemAvatar,
-  Avatar,
-} from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import Editor from "@monaco-editor/react";
-import CloseIcon from "@mui/icons-material/Close";
-import SendIcon from "@mui/icons-material/Send";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-import { useRef } from "react";
-import Markdown from "react-markdown";
 import { Splitter, SplitterPanel } from "primereact/splitter";
 import InputBox from "../components/playground/InputBox";
 import Chatbot from "../components/bot/Bot";
@@ -37,22 +12,12 @@ import ProblemDetails from "../components/playground/ProblemDetails";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-// const SnackbarAlert = ({ open, message, onClose }) => {
-//   return (
-//     <Snackbar open={open} autoHideDuration={6000} onClose={onClose}>
-//       <Alert severity={message.includes("successful") ? "success" : "error"}>
-//         {message}
-//       </Alert>
-//     </Snackbar>
-//   );
-// };
-
 const ProblemPlayground = () => {
   const { problemID } = useParams();
   const navigate = useNavigate();
   const [problems, setProblems] = useState({});
   const initialCode =
-    "import java.util.Scanner;\r\n\r\npublic class AdditionExample {\r\n public static void main(String[] args) {\r\n Scanner sc = new Scanner(System.in);\r\n \r\n // Do your code here\r\n\r\n System.out.println(sum);\r\n }\r\n}";
+    "import java.util.Scanner;\r\n\r\npublic class Solution {\r\n public static void main(String[] args) {\r\n Scanner sc = new Scanner(System.in);\r\n \r\n // Do your code here\r\n\r\n }\r\n}";
   const exampleCompileData = {
     stderr: "error: Run your code to see output...",
     exitCode: 1,
@@ -131,103 +96,33 @@ const ProblemPlayground = () => {
     }
   };
 
-  const [open, setOpen] = React.useState(false);
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-  const [messages, setMessages] = useState([]);
-  const [msg, setMsg] = useState("");
-
-  const messageInputRef = useRef(null);
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      sendMessage();
-    }
-  };
-
-  const sendMessage = () => {
-    const msg = messageInputRef.current.value.trim();
-    if (msg) {
-      // setMessages(message)
-      setMsg(msg);
-      setMessages([{ content: msg, isSent: true, user: "You" }]);
-      messageInputRef.current.value = "";
-      doChat();
-    }
-  };
-
-  const doChat = () => {
-    fetch(`${API_BASE_URL}/bot/ask`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        problemTitle: problems.question_title,
-        problemDescription: problems.question_description,
-        sampleInput: problems.example_case[0].sample_input,
-        sampleOutput: problems.example_case[0].sample_output,
-        sourceCode: currentcode,
-        userQuery: msg,
-      }),
-    })
-      .then((response) => response.text())
-      .then((resp) => {
-        const data = JSON.parse(resp);
-        console.log(data.response);
-        setMessages([{ content: data.response, isSent: false, user: "Bot" }]);
+  const doChat = (text) => {
+    return new Promise(function(resolve, reject) {
+      fetch(`${API_BASE_URL}/bot/ask`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          problemTitle: problems.question_title,
+          problemDescription: problems.question_description,
+          sampleInput: problems.example_case[0].sample_input,
+          sampleOutput: problems.example_case[0].sample_output,
+          sourceCode: currentcode,
+          userQuery: text,
+        }),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => response.text())
+        .then((resp) => {
+          const data = JSON.parse(resp);
+          console.log(data.response);
+          resolve(data.response);
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
   };
-  // try {
 
-  //   if (response.ok) {
-  //     console.log(response.text());
-  //     // console.log(response);
-  //     // setAlertSeverity("success");
-  //     // setAlertMessage("Registration successful!");
-  //     // navigate("/login"); // Navigate to login page after successful registration
-  //   } else {
-  //     const errorData = await response.text();
-  //     // setAlertSeverity("error");
-  //     console.log(errorData.message || "Registration failed!");
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // };
-
-  const DrawerList = (
-    <Box sx={{ width: "70vw" }} role="presentation">
-      <Button onClick={toggleDrawer(false)}>
-        <CloseIcon />
-      </Button>
-      <div
-        style={{ display: "flex", flexDirection: "column", height: "500px" }}
-      >
-        <List sx={{ flexGrow: 1, overflowY: "auto" }}>
-          {messages.map((message, index) => (
-            <Markdown>{message.content}</Markdown>
-          ))}
-        </List>
-        <div style={{ display: "flex", alignItems: "center", padding: "10px" }}>
-          <TextField
-            inputRef={messageInputRef}
-            onKeyPress={handleKeyPress}
-            label="Message"
-            variant="outlined"
-            fullWidth
-            placeholder="How can i help you?"
-          />
-          <IconButton onClick={sendMessage}>
-            <SendIcon />
-          </IconButton>
-        </div>
-      </div>
-    </Box>
-  );
   const [showbot, setShowbot] = useState(false);
   const toggleChatbot = () => {
     setShowbot(!showbot);
@@ -235,7 +130,7 @@ const ProblemPlayground = () => {
 
   return (
     <>
-      <div className="parent" style={{height:"88vh"}}>
+      <div className="parent" style={{ height: "88vh" }}>
         <Splitter style={{ height: "100%" }}>
           <SplitterPanel size={30}>
             <Splitter className="" style={{ height: "100%" }} layout="vertical">
@@ -316,7 +211,25 @@ const ProblemPlayground = () => {
             scale={1}
           >
             <div className="handle">
-              <Chatbot />
+              <Chatbot doChat={doChat} />
+              {/* <div className="chatbot">
+                <div style={{ position: "relative", height: "500px" }}>
+                  <MainContainer>
+                    <ChatContainer>
+                      <MessageList>
+                        <Message
+                          model={{
+                            message: "Hello my friend",
+                            sentTime: "just now",
+                            sender: "Joe",
+                          }}
+                        />
+                      </MessageList>
+                      <MessageInput placeholder="Type message here" />
+                    </ChatContainer>
+                  </MainContainer>
+                </div>
+              </div> */}
             </div>
           </Draggable>
         </div>

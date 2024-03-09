@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: "Montserrat", sans-serif !important;
-    font-optical-sizing: auto;
+body {
+  font-family: "Montserrat", sans-serif !important;
+  font-optical-sizing: auto;
+  /* overflow: hidden; */
+  overflow-x: hidden;
 }
-
