@@ -104,10 +104,10 @@ const ProblemPlayground = () => {
         body: JSON.stringify({
           problemTitle: problems.question_title,
           problemDescription: problems.question_description,
-          sampleInput: problems.example_case[0].sample_input,
-          sampleOutput: problems.example_case[0].sample_output,
+          // sampleInput: problems.example_case[0].sample_input,
+          // sampleOutput: problems.example_case[0].sample_output,
           sourceCode: currentcode,
-          userQuery: text,
+          userQuery: text + "dont give me code, Give answer in very less words.",
         }),
       })
         .then((response) => response.text())
@@ -212,24 +212,6 @@ const ProblemPlayground = () => {
           >
             <div className="handle">
               <Chatbot doChat={doChat} />
-              {/* <div className="chatbot">
-                <div style={{ position: "relative", height: "500px" }}>
-                  <MainContainer>
-                    <ChatContainer>
-                      <MessageList>
-                        <Message
-                          model={{
-                            message: "Hello my friend",
-                            sentTime: "just now",
-                            sender: "Joe",
-                          }}
-                        />
-                      </MessageList>
-                      <MessageInput placeholder="Type message here" />
-                    </ChatContainer>
-                  </MainContainer>
-                </div>
-              </div> */}
             </div>
           </Draggable>
         </div>
