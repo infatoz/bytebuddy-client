@@ -15,7 +15,7 @@ import How_it_works from "./pages/How_it_works";
 import Profile from "./pages/Profile";
 import Problems from "./pages/Problems";
 import SolvedProblems from "./pages/SolvedProblems";
-import ProblemForm from "./pages/ProblemForm.jsx";
+import ProblemForm from "./admin/ProblemForm.jsx";
 
 const App = () => {
   return (

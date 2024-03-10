@@ -120,75 +120,79 @@ const ProblemsForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant="h6">Problem Details</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Question Title"
-            name="question_title"
-            value={formData.question_title}
-            onChange={handleChange}
-            error={!!errorsRef.current.question_title}
-            helperText={errorsRef.current.question_title}
-            required
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            error={!!errorsRef.current.description}
-            helperText={errorsRef.current.description}
-            required
-            multiline
-            rows={4}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth>
-            <InputLabel id="topics-label">Topics</InputLabel>
-            <Select
-              labelId="topics-label"
-              name="topics"
-              multiple
-              value={formData.topics}
-              onChange={handleTopicChange}
-            >
-              {/* Add MenuItem components for each topic option */}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth>
-            <InputLabel id="categories-label">Categories</InputLabel>
-            <Select
-              labelId="categories-label"
-              name="categories"
-              multiple
-              value={formData.categories}
-              onChange={handleCategoryChange}
-            >
-              {/* Add MenuItem components for each category option */}
-            </Select>
-          </FormControl>
-        </Grid>
+    <>
+      <div className="container-custom">
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h6">Problem Details</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Question Title"
+                name="question_title"
+                value={formData.question_title}
+                onChange={handleChange}
+                error={!!errorsRef.current.question_title}
+                helperText={errorsRef.current.question_title}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                error={!!errorsRef.current.description}
+                helperText={errorsRef.current.description}
+                required
+                multiline
+                rows={4}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <InputLabel id="topics-label">Topics</InputLabel>
+                <Select
+                  labelId="topics-label"
+                  name="topics"
+                  multiple
+                  value={formData.topics}
+                  onChange={handleTopicChange}
+                >
+                  {/* Add MenuItem components for each topic option */}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <InputLabel id="categories-label">Categories</InputLabel>
+                <Select
+                  labelId="categories-label"
+                  name="categories"
+                  multiple
+                  value={formData.categories}
+                  onChange={handleCategoryChange}
+                >
+                  {/* Add MenuItem components for each category option */}
+                </Select>
+              </FormControl>
+            </Grid>
 
-        {/* ... (similar Grid layout for Example Cases, Sample Code, Test Cases) */}
+            {/* ... (similar Grid layout for Example Cases, Sample Code, Test Cases) */}
 
-        <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Submit
-          </Button>
-        </Grid>
-      </Grid>
-    </form>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary" fullWidth>
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </>
   );
 };
 
